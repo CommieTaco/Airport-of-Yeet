@@ -1,5 +1,4 @@
 import helpers.Presenter;
-import helpers.Testme;
 
 import java.util.Scanner;
 
@@ -11,25 +10,51 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         presenter.mainGreeter();
-        presenter.mainMenu();
 
-        String resp;
-        Integer shrek;
+        String resp = "";
 
         while(true){
-            System.out.println("Do you want out?");
-            resp = sc.nextLine();
-            System.out.println(resp);
-            if (resp.equals("Out") || resp.equals("y"))
-                break;
-            else if (resp.equals("El Pepe")){
-                new Testme(resp);
+
+            if (resp.equals("")){
+                presenter.mainMenu();
+                resp = sc.nextLine();
+
+                if (resp.equals("1")){
+
+                }
+                else if (resp.equals("2")){
+
+                }
+                else if (resp.equals("3")){
+
+                }
+                else if (resp.equals("4")){
+
+                }
+                else if (resp.equals("5")){
+
+                }
+                else if (resp.equals("6")){
+
+                }
+                else if (resp.equals("7")){
+                    presenter.farewellMessage();
+                    break;
+                }
+                else {
+                    System.out.println(
+                            """
+                            ┌------------------------------┐
+                            | Please enter a valid  number |
+                            └------------------------------┘
+                            """);
+                    resp = "";
+                }
             }
 
-            System.out.println("Do you want Shrek?");
-            shrek = sc.nextInt();
-            sc.nextLine();
-            System.out.println(shrek);
+            System.out.println(resp);
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
         }
     }
 }

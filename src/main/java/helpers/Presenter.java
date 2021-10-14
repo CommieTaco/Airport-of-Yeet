@@ -50,4 +50,13 @@ public class Presenter {
                         └------ Please enter a number to continue -----┘"""
         );
     }
+
+    public void farewellMessage(){
+        System.out.println(
+                """
+                ┌----------┐
+                | Goodbye! |
+                └----------┘
+                """);
+    }
 }
