@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBConnection {
 
@@ -17,9 +19,10 @@ public class DBConnection {
         stmt = conn.createStatement();
     }
 
-    public static void getRows(String tableName) throws Exception{
+    public static List getRows(String tableName) throws Exception{
 
         ResultSet rs = null;
+        List<String> results = new ArrayList<>();
         try {
 //            Execute SQL query
             rs = stmt.executeQuery("SELECT * FROM " + tableName);
@@ -35,7 +38,16 @@ public class DBConnection {
             rs.close();
             stmt.close();
             conn.close();
+
+            return results;
         }
+    }
+
+    public static String getRow() {
+
+        String results = "";
+
+        return results;
     }
 
     public static void insertRow() throws Exception{

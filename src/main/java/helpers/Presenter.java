@@ -60,12 +60,113 @@ public class Presenter {
                 """);
     }
 
+//    BEGINS SECTION ABOUT FLIGHTS
+
+//      ADD
+
     public void flightsMenu(){
         System.out.println(
                 """
-                ┌----------┐
-                | Yeet     |
-                └----------┘
+                ┌---------------- Flights menu ----------------┐
+                | ■ Add a new flight                       (1) |
+                | ■ Update status of a flight              (2) |
+                | ■ Information about a flight             (3) |
+                | ■ Cancel a flight                        (4) |
+                └------ Please enter a number to continue -----┘
                 """);
     }
+
+    public void flightsMenuAddOrigin(){
+        System.out.println(
+                """
+                ┌-------------- Add a new flight --------------┐
+                | ■ Enter the place of origin                  |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void flightsMenuAddDest(){
+        System.out.println(
+                """
+                ┌-------------- Add a new flight --------------┐
+                | ■ Enter the place of destination             |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void flightsMenuAddDateDep(){
+        System.out.println(
+                """
+                ┌-------------- Add a new flight --------------┐
+                | ■ Enter the date of departure (MM/DD/YYYY)   |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void flightsMenuAddDateArri(){
+        System.out.println(
+                """
+                ┌-------------- Add a new flight --------------┐
+                | ■ Enter the date of arrival (MM/DD/YYYY)     |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void flightsMenuAddTimeDep(){
+        System.out.println(
+                """
+                ┌-------------- Add a new flight --------------┐
+                | ■ Enter the time of departure (AM/PM format) |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void flightsMenuAddTimeArri(){
+        System.out.println(
+                """
+                ┌-------------- Add a new flight --------------┐
+                | ■ Enter the time of arrival (AM/PM format)   |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void flightsMenuAddNameAirc(){
+        System.out.println(
+                """
+                ┌-------------- Add a new flight --------------┐
+                | ■ Enter the name of the aircraft             |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void flightsMenuAddNameAirpo(){
+        System.out.println(
+                """
+                ┌-------------- Add a new flight --------------┐
+                | ■ Enter the time of arrival (AM/PM format)   |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+//      UPDATE
+
+    public void flightsMenuUpdateChooseFlight(){
+        System.out.println(
+                """
+                ┌-------------- Update a flight ---------------┐
+                | ■ Enter the ID of the flight to update       |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void flightsMenuUpdateStatus(){
+        System.out.println(
+                """
+                ┌-------------- Update a flight ---------------┐
+                | ■ Enter the new state of the chosen flight   |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+//    ENDS SECTION ABOUT FLIGHTS
 }
