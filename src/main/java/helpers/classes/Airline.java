@@ -34,39 +34,54 @@ public class Airline {
         return newSuccess;
     }
 
-    public boolean findAirline(String name) {
+    public void findAirline(String name) {
 
-        boolean success = false;
-        Scanner sc = new Scanner(System.in);
+
         try {
             conn.getConnection();
             idAirline = conn.findAirline(name);
-            System.out.println("ID: "+this.idAirline);
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+    }
+
+    public boolean updateAirline(){
+
+        Scanner sc = new Scanner(System.in);
+        boolean success = false;
+        try {
             Presenter presenter = new Presenter();
             presenter.airlinesMenuUpdateName(name);
             this.name = sc.nextLine();
-            System.out.println(this.name);
             presenter.airlinesMenuUpdateOri(name);
             this.countryReg = sc.nextLine();
-            System.out.println(this.countryReg);
+            findAirline(this.name);
 
-            this.updateAirline();
+            conn.getConnection();
+            conn.updateAirline(name,countryReg,idAirline);
+
+            success = true;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+        return success;
+    }
+
+    public boolean deleteAirline(){
+
+        boolean success = false;
+        try {
+            findAirline(this.name);
+            conn.getConnection();
+            conn.deleteAirline(this.idAirline);
             success = true;
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         return success;
-    }
-
-    public void updateAirline(){
-
-        try {
-            conn.getConnection();
-            conn.updateAirline(name,countryReg,idAirline);
-        } catch (Exception e) {
-            System.out.println(e.getStackTrace());
-        }
-
     }
 
 //    List of airlines

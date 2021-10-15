@@ -7,10 +7,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class DBConnection {
 
@@ -89,7 +85,7 @@ public class DBConnection {
             while (rs.next())
                 idAir = rs.getInt("idAirline");
         }catch (Exception e) {
-            System.out.println("Here :"+ e.toString());
+            System.out.println(e.toString());
         } finally {rs.close(); stmt.close(); conn.close();}
 
         return idAir;
@@ -101,7 +97,17 @@ public class DBConnection {
             String query = "UPDATE airline SET name = '"+name+"', countryRegistration = '"+countryOri+"' WHERE (idAirline = '"+idAirline+"');";
             stmt.executeUpdate(query);
         }catch (Exception e) {
-            System.out.println("Or maybe here: "+e.toString());
+            System.out.println(e.toString());
         } finally {stmt.close(); conn.close();}
+    }
+
+    public void deleteAirline(int idAirline) {
+        try {
+            String query = "DELETE FROM airline WHERE (idAirline = '"+idAirline+"');";
+            stmt.executeUpdate(query);
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
 }

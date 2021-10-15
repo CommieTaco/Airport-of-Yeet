@@ -247,5 +247,14 @@ public class Presenter {
                 └--- Write data and press Enter to continue ---┘
                 """, find);
     }
+    public void airlinesMenuDelete(){
+        System.out.println(
+                """
+                ┌-------------- Delete an airline -------------┐
+                | ■ Enter the name of the airline to delete    |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
 //endregion ENDS SECTION ABOUT AIRLINES
 }

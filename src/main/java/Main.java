@@ -117,8 +117,8 @@ public class Main {
                             case "2":
 
                                 presenter.airlinesMenuUpdateSearch();
-                                String airToFind = sc.nextLine();
-                                boolean updated = airline.findAirline(airToFind);
+                                airline.setName(sc.nextLine());
+                                boolean updated = airline.updateAirline();
 
                                 if (updated)
                                     System.out.println("Airline has been updated");
@@ -127,6 +127,15 @@ public class Main {
                                 break;
 //                                Delete an airline
                             case "3":
+
+                                presenter.airlinesMenuDelete();
+                                airline.setName(sc.nextLine());
+                                boolean deleted = airline.deleteAirline();
+
+                                if (deleted)
+                                    System.out.println("Airline has been deleted");
+                                else
+                                    System.out.println("There was an error whilst deleting the airline");
 
                                 break;
 //                                View all airlines
