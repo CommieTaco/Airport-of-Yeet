@@ -1,5 +1,4 @@
-package com.kodigo.weather;
-
+package helpers.api;
 import org.json.JSONException;
 import org.json.JSONObject;
 
