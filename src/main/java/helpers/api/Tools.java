@@ -1,5 +1,4 @@
-package com.kodigo.weather;
-
+package helpers.api;
 public class Tools {
 	/**
      * <p>
