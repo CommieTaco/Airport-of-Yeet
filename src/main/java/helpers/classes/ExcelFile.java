@@ -21,15 +21,13 @@ public class ExcelFile {
         Sheet sheet = workbook.createSheet("Hoja de datos");
         //Second counter for lines in excel file and for index posicion
         Integer num = 2;
-        int u = flight.flights.indexOf(0);
         //For each line it creates an array of objects (Object[])
         Map<String, Object[]> data = new TreeMap<String, Object[]>();
         data.put("1", new Object[]{"Identificador", "Nombre", "Apellidos"});    
         for(int i = 0; i <= flight.flights.size(); i++)
         {
-            data.put(num.toString(), new Object[]{flight.flights.indexOf(u)});
+            data.put(num.toString(), new Object[]{flight.flights.indexOf(i)});
             num++;
-            u++;
         }
         //Iterate over data to write on the sheet
         Set keyset = data.keySet();
