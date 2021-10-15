@@ -59,4 +59,13 @@ public class Presenter {
                 └----------┘
                 """);
     }
+
+    public void flightsMenu(){
+        System.out.println(
+                """
+                ┌----------┐
+                | Yeet     |
+                └----------┘
+                """);
+    }
 }

@@ -1,33 +1,13 @@
 package helpers.classes;
 
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter @Setter
 public class Airline {
 
-    private int ID_airline;
+    private int IdAirline;
     private String name;
-    private String CountryReg;
+    private String countryReg;
 
-    public int getID_airline() {
-        return this.ID_airline;
-    }
-
-    public void setID_airline(int ID_airline) {
-        this.ID_airline = ID_airline;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCountryReg() {
-        return this.CountryReg;
-    }
-
-    public void setCountryReg(String CountryReg) {
-        this.CountryReg = CountryReg;
-    }
 }

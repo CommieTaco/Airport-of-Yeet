@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/misc/YeetPort/yeetport_aircraft.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/misc/YeetPort/yeetport_airline.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/misc/YeetPort/yeetport_airport.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/misc/YeetPort/yeetport_cancellation.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/misc/YeetPort/yeetport_flight.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/misc/YeetPort/yeetport_incident.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/misc/YeetPort/yeetport_weather.sql" dialect="MySQL" />
+  </component>
+</project>

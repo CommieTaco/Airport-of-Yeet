@@ -1,4 +1,5 @@
 import helpers.Presenter;
+import helpers.classes.Cancellation;
 import helpers.connection.DBConnection;
 
 import java.util.Scanner;
@@ -9,13 +10,13 @@ public class Main {
 
         Presenter presenter = new Presenter();
         Scanner sc = new Scanner(System.in);
+        boolean breakLoop = false;
 
         presenter.mainGreeter();
 
         String resp = "";
 
-        label:
-        while(true){
+        userInput: while(true){
 
             if (resp.equals("")){
                 presenter.mainMenu();
@@ -24,11 +25,14 @@ public class Main {
                 switch (resp) {
                     case "1":
                         DBConnection.getConnection();
-                        break;
+                        DBConnection.insertRow();
+                        resp = "";
+                        break userInput;
 
                     case "2":
-
-                        break;
+                        presenter.flightsMenu();
+                        Cancellation can = new Cancellation();
+                        break userInput;
                     case "3":
 
                         break;
