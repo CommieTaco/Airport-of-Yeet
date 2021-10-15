@@ -1,3 +1,5 @@
+package helpers.classes;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Map;
@@ -11,22 +13,24 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 public class ExcelFile {
     public static void main(String[] args) {
+        //Class constructor
+        Flights flights = new Flights();
         //Creates a new workbook in blank
         Workbook workbook = new HSSFWorkbook();
         //Creates a new sheet
         Sheet sheet = workbook.createSheet("Hoja de datos");
-        //Por cada línea se crea un arreglo de objetos (Object[])
+        //For each line it creates an array of objects (Object[])
         Map<String, Object[]> data = new TreeMap<String, Object[]>();
-        data.put("1", new Object[]{"Identificador", "Nombre", "Apellidos"});
-        data.put("2", new Object[]{1, "María", "Remen"});
-        data.put("3", new Object[]{2, "David", "Allos"});
-        data.put("4", new Object[]{3, "Carlos", "Caritas"});
-        data.put("5", new Object[]{4, "Luisa", "Vitz"});
+        for(Integer num = 1; num <= flights.flights.size(); num++)
+        {
+            data.put(num.toString(), new Object[]{flights});
+            num++;
+        }
         //Iterate over data to write on the sheet
         Set keyset = data.keySet();
-        int numRenglon = 0;
+        int numRow = 0;
         for (Object key : keyset) {
-            Row row = sheet.createRow(numRenglon++);
+            Row row = sheet.createRow(numRow++);
             Object[] ObjectArray = data.get(key);
             int numCell = 0;
             for (Object obj : ObjectArray) {
