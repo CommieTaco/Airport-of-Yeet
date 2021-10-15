@@ -1,4 +1,4 @@
-package com.kodigo.weather;
+package helpers.api;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
