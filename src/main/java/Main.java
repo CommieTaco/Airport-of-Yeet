@@ -1,10 +1,11 @@
 import helpers.Presenter;
+import helpers.connection.DBConnection;
 
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         Presenter presenter = new Presenter();
         Scanner sc = new Scanner(System.in);
@@ -13,42 +14,45 @@ public class Main {
 
         String resp = "";
 
+        label:
         while(true){
 
             if (resp.equals("")){
                 presenter.mainMenu();
                 resp = sc.nextLine();
 
-                if (resp.equals("1")){
+                switch (resp) {
+                    case "1":
+                        DBConnection.getConnection();
+                        break;
 
-                }
-                else if (resp.equals("2")){
+                    case "2":
 
-                }
-                else if (resp.equals("3")){
+                        break;
+                    case "3":
 
-                }
-                else if (resp.equals("4")){
+                        break;
+                    case "4":
 
-                }
-                else if (resp.equals("5")){
+                        break;
+                    case "5":
 
-                }
-                else if (resp.equals("6")){
+                        break;
+                    case "6":
 
-                }
-                else if (resp.equals("7")){
-                    presenter.farewellMessage();
-                    break;
-                }
-                else {
-                    System.out.println(
-                            """
-                            ┌------------------------------┐
-                            | Please enter a valid  number |
-                            └------------------------------┘
-                            """);
-                    resp = "";
+                        break;
+                    case "7":
+                        presenter.farewellMessage();
+                        break;
+                    default:
+                        System.out.println(
+                                """
+                                        ┌------------------------------┐
+                                        | Please enter a valid  number |
+                                        └------------------------------┘
+                                        """);
+                        resp = "";
+                        break;
                 }
             }
 
