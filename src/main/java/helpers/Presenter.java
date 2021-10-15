@@ -1,9 +1,10 @@
 package helpers;
 
-public class Presenter {
-    public Presenter() {
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-    }
+public class Presenter {
+    public Presenter() { }
 
     public void mainGreeter()  {
         System.out.println("""
@@ -60,7 +61,7 @@ public class Presenter {
                 """);
     }
 
-//    BEGINS SECTION ABOUT FLIGHTS
+//region SECTION ABOUT FLIGHTS
 
 //      ADD
 
@@ -72,6 +73,7 @@ public class Presenter {
                 | ■ Update status of a flight              (2) |
                 | ■ Information about a flight             (3) |
                 | ■ Cancel a flight                        (4) |
+                | ■ Go back                                (5) |
                 └------ Please enter a number to continue -----┘
                 """);
     }
@@ -168,5 +170,82 @@ public class Presenter {
                 """);
     }
 
-//    ENDS SECTION ABOUT FLIGHTS
+//endregion SECTION ABOUT FLIGHTS
+//region SECTON ABOUT AIRLINES
+    public void airlinesMenu(){
+        System.out.println(
+                """
+                ┌--------------- Airlines menu ----------------┐
+                | ■ Add a new airline                      (1) |
+                | ■ Update an airline                      (2) |
+                | ■ Delete an airline                      (3) |
+                | ■ View all airlines                      (4) |
+                | ■ Go back                                (5) |
+                └------ Please enter a number to continue -----┘
+                """);
+    }
+
+    public void showAirlines(JSONArray results){
+
+//        Aesthetic formatting
+        String listAir = "┌----------------- Registered Airlines ------------------┐\n";
+
+        for (int i = 0; i <results.length(); i++) {
+            listAir = listAir.concat(
+                    "| Airline name: "+results.getJSONObject(i).getString("name") + "\n"
+                    + "| Country where the airline is registered: " + results.getJSONObject(i).getString("countryRegistration") + "\n"
+                    + "├--------------------------------------------------------┤\n"
+            );
+        }
+        listAir = listAir.concat("└------------- Please press Enter to continue -----------┘\n");
+        System.out.println(listAir);
+    }
+
+    public void airlinesMenuAddName(){
+        System.out.println(
+                """
+                ┌-------------- Add a new airline -------------┐
+                | ■ Enter the airline's name                   |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void airlinesMenuAddCountryOri(){
+        System.out.println(
+                """
+                ┌-------------- Add a new airline -------------┐
+                | ■ Enter the airline's country of origin      |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void airlinesMenuUpdateSearch(){
+        System.out.println(
+                """
+                ┌-------------- Update an airline -------------┐
+                | ■ Enter the name of the airline to update    |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void airlinesMenuUpdateName(String find){
+        System.out.printf(
+                """
+                ┌-------------- Update an airline -------------┐
+                | ► %s                                         |
+                | ■ Enter airline's new name                   |
+                └--- Write data and press Enter to continue ---┘
+                """, find);
+    }
+
+    public void airlinesMenuUpdateOri(String find){
+        System.out.printf(
+                """
+                ┌-------------- Update an airline -------------┐
+                | ► %s                                         |
+                | ■ Enter airline's new country of origin      |
+                └--- Write data and press Enter to continue ---┘
+                """, find);
+    }
+//endregion ENDS SECTION ABOUT AIRLINES
 }

@@ -1,7 +1,7 @@
 import helpers.Presenter;
+import helpers.classes.Airline;
 import helpers.classes.Cancellation;
 import helpers.classes.Flights;
-import helpers.connection.DBConnection;
 
 import java.util.Scanner;
 
@@ -17,21 +17,23 @@ public class Main {
 
         String resp = "";
 
-        userInput: while(true){
+        userInputSwitch: while(true){
 
             if (resp.equals("")){
                 presenter.mainMenu();
                 resp = sc.nextLine();
 
-                label:
+                respSwitch:
                 switch (resp) {
+//region                    Flights option
                     case "1":
                         String flResp;
                         presenter.flightsMenu();
                         flResp = sc.nextLine();
 
 //                        Add flight
-                        switch (flResp) {
+                        flightResponseSwitch: switch (flResp) {
+
                             case "1":
 
                                 presenter.flightsMenuAddOrigin();
@@ -65,6 +67,10 @@ public class Main {
                             case "4":
 
                                 break;
+//                        Go back
+                            case "5":
+
+                                break flightResponseSwitch;
                             default:
                                 System.out.println(
                                         """
@@ -72,33 +78,100 @@ public class Main {
                                                 | Please enter a valid  number |
                                                 └------------------------------┘
                                                 """);
-                                break label;
+                                resp = "1";
+                                return;
                         }
 
                         Flights flights = new Flights();
                         resp = "";
-                        break userInput;
-
+                        break userInputSwitch;
+//endregion Ends flights option
+//region                Aircraft option
                     case "2":
 
                         Cancellation can = new Cancellation();
-                        break userInput;
+                        break userInputSwitch;
+//endregion             Ends Aircraft option
+//region                Airlines option
                     case "3":
+                        presenter.airlinesMenu();
+                        String airResp = sc.nextLine();
+                        Airline airline = new Airline();
 
+                        switch (airResp){
+//                          Create new airline
+                            case "1":
 
-                        break userInput;
+                                presenter.airlinesMenuAddName();
+                                airline.setName(sc.nextLine());
+                                presenter.airlinesMenuAddCountryOri();
+                                airline.setCountryReg(sc.nextLine());
+                                boolean success = airline.addNewAirline();
+
+                                if (success)
+                                    System.out.println("New airline created successfully");
+                                else
+                                    System.out.println("We couldn't create the new airline");
+                                break;
+//                                Update airline
+                            case "2":
+
+                                presenter.airlinesMenuUpdateSearch();
+                                String airToFind = sc.nextLine();
+                                boolean updated = airline.findAirline(airToFind);
+
+                                if (updated)
+                                    System.out.println("Airline has been updated");
+                                else
+                                    System.out.println("There was an error whilst updating the airline");
+                                break;
+//                                Delete an airline
+                            case "3":
+
+                                break;
+//                                View all airlines
+                            case "4":
+
+                                airline.getAirlines();
+
+                                System.out.println("""
+                                            ┌-------------- View the airlines -------------┐
+                                            | ■ Press Enter to continue                    |
+                                            └--- Write data and press Enter to continue ---┘
+                                        """);
+                                sc.nextLine();
+
+                                break;
+                            case "5":
+
+                                break;
+                            default:
+
+                                break;
+                        }
+
+                        break userInputSwitch;
+//endregion             Ends Airlines option
+//region                Import flights from Excel option
                     case "4":
 
-                        break userInput;
+                        break userInputSwitch;
+//endregion             Ends import flights from Excel option
+//region                Export flights to Excel option
                     case "5":
 
-                        break userInput;
+                        break userInputSwitch;
+//endregion             Ends export flights to Excel option
+//region                Check weather option
                     case "6":
 
-                        break userInput;
+                        break userInputSwitch;
+//endregion             Ends check weather option
+//region                Exit option
                     case "7":
                         presenter.farewellMessage();
-                        break userInput;
+                        break userInputSwitch;
+//endregion             Ends exit option
                     default:
                         System.out.println(
                                 """
@@ -112,8 +185,6 @@ public class Main {
             }
 
             System.out.println(resp);
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
         }
     }
 }
