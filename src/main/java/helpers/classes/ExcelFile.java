@@ -24,11 +24,15 @@ public class ExcelFile {
         //For each line it creates an array of objects (Object[])
         Map<String, Object[]> data = new TreeMap<String, Object[]>();
         data.put("1", new Object[]{"Identificador", "Nombre", "Apellidos"});    
-        for(int i = 0; i <= flight.flights.size(); i++)
+        data.put("2", new Object[]{1, "Nombre", "Apellidos"});    
+        data.put("3", new Object[]{2, "Nombre", "Apellidos"});    
+        data.put("4", new Object[]{3, "Nombre", "Apellidos"});    
+        data.put("5", new Object[]{4, "Nombre", "Apellidos"});    
+        /*for(int i = 0; i <= flight.flights.size(); i++)
         {
             data.put(num.toString(), new Object[]{flight.flights.indexOf(i)});
             num++;
-        }
+        }*/
         //Iterate over data to write on the sheet
         Set keyset = data.keySet();
         int numRow = 0;
