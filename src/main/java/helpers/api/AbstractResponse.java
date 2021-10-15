@@ -1,4 +1,4 @@
-package com.kodigo.weather;
+package helpers.api;
 import java.io.Serializable;
 
 import org.json.JSONObject;
