@@ -17,7 +17,7 @@ public class DBConnection {
 
         try {
             //            Creating connection
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/yeetport", "root", "Dont2Bodies0!");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/yeetport", "root", "");
             //            Creating statement
             stmt = conn.createStatement();
 
