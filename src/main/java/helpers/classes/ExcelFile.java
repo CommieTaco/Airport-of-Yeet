@@ -19,9 +19,12 @@ public class ExcelFile {
         Workbook workbook = new HSSFWorkbook();
         //Creates a new sheet
         Sheet sheet = workbook.createSheet("Hoja de datos");
+        //Second counter for lines in excel file
+        Integer num = 2;
         //For each line it creates an array of objects (Object[])
         Map<String, Object[]> data = new TreeMap<String, Object[]>();
-        for(Integer num = 1; num <= flights.flights.size(); num++)
+        data.put("1", new Object[]{"Identificador", "Nombre", "Apellidos"});    
+        for(int i = 0; i <= flights.flights.size(); i++)
         {
             data.put(num.toString(), new Object[]{flights});
             num++;
