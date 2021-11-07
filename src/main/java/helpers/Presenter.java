@@ -257,4 +257,94 @@ public class Presenter {
     }
 
 //endregion ENDS SECTION ABOUT AIRLINES
+
+    //Region section about Aircraft
+
+    public void aircraftMenu(){
+        System.out.println(
+                """
+                ┌---------------- Flights menu ----------------┐
+                | ■ Add a new Aircraft                     (1) |
+                | ■ Delete Aircraft                        (2) |
+                | ■ Information about Aircraft             (3) |
+                └------ Please enter a number to continue -----┘
+                """);
+    }
+
+    //ADD
+    public void aircraftMenuAddType(){
+        System.out.println(
+                """
+                ┌------------- Add a new Aircraft -------------┐
+                | ■ Enter the type of the Aircraft             |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void aircraftMenuAddName(){
+        System.out.println(
+                """
+                ┌------------- Add a new Aircraft -------------┐
+                | ■ Enter the name of the Aircraft             |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void aircraftMenuAddCapacity(){
+        System.out.println(
+                """
+                ┌------------- Add a new Aircraft -------------┐
+                | ■ Enter the passengers capacity              |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void aircraftMenuAddRange(){
+        System.out.println(
+                """
+                ┌------------- Add a new Aircraft -------------┐
+                | ■ Enter the range of the Aircraft            |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void aircraftMenuAddIdAir(){
+        System.out.println(
+                """
+                ┌------------- Add a new Aircraft -------------┐
+                | ■ Enter the code of the Airline              |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    //DELETE
+    public void aircraftMenuDeleteAircraft(){
+        System.out.println(
+                """
+                ┌-------------- Delete an aircraft -------------┐
+                | ■ Enter the name of the aircraft to delete   |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
+    public void showAircraft(JSONArray results){
+
+//        Aesthetic formatting
+        String listAir = "┌----------------- Registered Aircraft ------------------┐\n";
+
+        for (int i = 0; i <results.length(); i++) {
+            listAir = listAir.concat(
+                    "| Aircraft name: "+results.getJSONObject(i).getString("name") + "\n"
+                            + "| Type of aircraft: " + results.getJSONObject(i).getString("type") + "\n"
+                            + "| Capacity: " + results.getJSONObject(i).getInt("capacity") + "\n"
+                            + "| Range: " + results.getJSONObject(i).getInt("rang") + "\n"
+                            + "| Airline: " + results.getJSONObject(i).getInt("idAirline") + "\n"
+                            + "├--------------------------------------------------------┤\n"
+            );
+        }
+        listAir = listAir.concat("└------------- Please press Enter to continue -----------┘\n");
+        System.out.println(listAir);
+    }
+
+//End of Aircraft Region
 }

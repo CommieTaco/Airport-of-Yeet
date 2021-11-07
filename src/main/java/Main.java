@@ -1,4 +1,5 @@
 import helpers.Presenter;
+import helpers.classes.Aircraft;
 import helpers.classes.Airline;
 import helpers.classes.Cancellation;
 import helpers.classes.Flights;
@@ -90,6 +91,53 @@ public class Main {
                     case "2":
 
                         Cancellation can = new Cancellation();
+
+                        Aircraft aircraft = new Aircraft();
+                        String arcResp;
+                        presenter.aircraftMenu();
+                        arcResp = sc.nextLine();
+                        switch (arcResp){
+                            //create new aircraft
+                            case "1":
+                                presenter.aircraftMenuAddType();
+                                aircraft.setType(sc.nextLine());
+                                presenter.aircraftMenuAddName();
+                                aircraft.setName(sc.nextLine());
+                                presenter.aircraftMenuAddCapacity();
+                                aircraft.setCapacity(sc.nextInt());
+                                presenter.aircraftMenuAddRange();
+                                aircraft.setRange(sc.nextDouble());
+                                presenter.aircraftMenuAddIdAir();
+                                aircraft.setIdAirline(sc.nextInt());
+                                boolean success = aircraft.addNewAircraft();
+
+                                if (success)
+                                    System.out.println("New aircraft created successfully");
+                                else
+                                    System.out.println("We couldn't create the new aircraft");
+                                break;
+                            //delete an aircraft
+                            case "2":
+                                presenter.aircraftMenuDeleteAircraft();
+                                aircraft.setName(sc.nextLine());
+                                boolean deleted = aircraft.deleteAircraft();
+
+                                if (deleted)
+                                    System.out.println("Aircraft has been deleted");
+                                else
+                                    System.out.println("There was an error whilst deleting the airline");
+                                break;
+                            //view all aircraft
+                            case "3":
+                                aircraft.getAircraft();
+                                break;
+                            case "4":
+                                presenter.mainMenu();
+                                break;
+                            default:
+
+                                break;
+                        }
                         break userInputSwitch;
 //endregion             Ends Aircraft option
 //region                Airlines option
@@ -152,7 +200,7 @@ public class Main {
 
                                 break;
                             case "5":
-
+                                presenter.mainMenu();
                                 break;
                             default:
 

@@ -110,4 +110,85 @@ public class DBConnection {
             System.out.println(e.toString());
         }
     }
+
+    //AIRCRAFT
+
+    //ADD
+    public boolean insertAircraft(String type, String name, int capacity, Double range, int IdAirline) throws Exception {
+
+        boolean succ = false;
+        try {
+            String newQuery = "INSERT INTO aircraft (type, name, capacity, rang, IdAirline) VALUES ('"+type+"', '"+name+"', "+capacity+", "+range+", "+IdAirline+");";
+            stmt.executeUpdate(newQuery);
+            succ = true;
+        }catch (Exception e) {
+            System.out.println(e.toString());
+        } finally {stmt.close(); conn.close();}
+
+        return succ;
+    }
+
+    //Find Aircraft
+    public int findAircraft(String name) throws Exception {
+
+        int idAir = 0;
+        ResultSet rs = null;
+        try {
+
+            rs = stmt.executeQuery("Select idAircraft FROM aircraft WHERE name = '"+name+"'");
+            while (rs.next())
+                idAir = rs.getInt("idAircraft");
+        }catch (Exception e) {
+            System.out.println(e.toString());
+        } finally {rs.close(); stmt.close(); conn.close();}
+
+        return idAir;
+    }
+
+    //DELETE
+    public void deleteAircraft(int idAircraft){
+        try {
+            String query = "DELETE FROM aircraft WHERE (idAircraft = '"+idAircraft+"');";
+            stmt.executeUpdate(query);
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+
+    public JSONArray getRowsAircraft() throws Exception {
+
+        ResultSet rs = null;
+        JSONArray airRes = new JSONArray();
+
+        try {
+//            Execute SQL query
+            rs = stmt.executeQuery("SELECT * FROM aircraft");
+
+//            Iterate result
+            while (rs.next()) {
+                int idAir = rs.getInt("idAircraft");
+                String typeAir = rs.getString("type");
+                String nameAir = rs.getString("name");
+                int captAir = rs.getInt("capacity");
+                int rangeAir = rs.getInt("rang");
+                int idAlAir = rs.getInt("idAirline");
+
+                JSONObject airObj = new JSONObject();
+                airObj.put("idAirline",idAir);
+                airObj.put("name", nameAir);
+                airObj.put("type", typeAir);
+                airObj.put("capacity", captAir);
+                airObj.put("rang", rangeAir);
+                airObj.put("idAirline", idAlAir);
+
+                airRes.put(airObj);
+            }
+        } catch (Exception e) {
+            System.out.println("Don't worry, it's normal to panic in these trying times" + e.getStackTrace());
+        } finally {rs.close(); stmt.close(); conn.close();}
+
+        return airRes;
+    }
+
 }
