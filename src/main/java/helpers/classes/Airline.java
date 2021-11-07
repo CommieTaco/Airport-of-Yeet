@@ -5,8 +5,6 @@ import helpers.connection.DBConnection;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONArray;
-import org.json.JSONObject;
-import scala.math.ScalaNumericAnyConversions;
 
 import java.awt.*;
 import java.util.Scanner;

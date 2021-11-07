@@ -263,10 +263,11 @@ public class Presenter {
     public void aircraftMenu(){
         System.out.println(
                 """
-                ┌---------------- Flights menu ----------------┐
+                ┌---------------- Aircraft menu ---------------┐
                 | ■ Add a new Aircraft                     (1) |
-                | ■ Delete Aircraft                        (2) |
+                | ■ Delete an Aircraft                     (2) |
                 | ■ Information about Aircraft             (3) |
+                | ■ Update an Aircraft                     (4) |
                 └------ Please enter a number to continue -----┘
                 """);
     }
@@ -290,6 +291,15 @@ public class Presenter {
                 """);
     }
 
+    public void aircraftMenuAddModel(){
+        System.out.println(
+                """
+                ┌------------- Add a new Aircraft -------------┐
+                | ■ Enter the model of the Aircraft            |
+                └--- Write data and press Enter to continue ---┘
+                """);
+    }
+
     public void aircraftMenuAddCapacity(){
         System.out.println(
                 """
@@ -308,12 +318,21 @@ public class Presenter {
                 """);
     }
 
-    public void aircraftMenuAddIdAir(){
+    public void aircraftMenuAddAirlineName(){
         System.out.println(
                 """
-                ┌------------- Add a new Aircraft -------------┐
-                | ■ Enter the code of the Airline              |
-                └--- Write data and press Enter to continue ---┘
+                ┌------------------ Add a new Aircraft ------------------┐
+                | ■ Enter the name of the Airline that owns the aircraft |
+                └-------- Write data and press Enter to continue --------┘
+                """);
+    }
+
+    public void aircraftMenuAddAirlineAllowed(){
+        System.out.println(
+                """
+                ┌------------------ Add a new Aircraft ------------------┐
+                | ■ Is this type of aircraft allowed at the airport?     |
+                └-------- Write data and press Enter to continue --------┘
                 """);
     }
 
@@ -344,6 +363,16 @@ public class Presenter {
         }
         listAir = listAir.concat("└------------- Please press Enter to continue -----------┘\n");
         System.out.println(listAir);
+    }
+
+    public void aircraftMenuUpdateType(String find){
+        System.out.printf(
+                """
+                ┌-------------- Update an airline -------------┐
+                | ► %s                                         |
+                | ■ Enter aircraft's new type                  |
+                └--- Write data and press Enter to continue ---┘
+                """, find);
     }
 
 //End of Aircraft Region

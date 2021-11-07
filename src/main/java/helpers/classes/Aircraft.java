@@ -13,25 +13,40 @@ public class Aircraft {
     private String name;
     private String model;
     private int capacity;
-    private Double range;
-    private int IdAirline;
+    private String range;
+    private int idAirline;
     private int typeAllowed;
+    private String nameAirline;
     private final DBConnection conn = new DBConnection();
 
 
-    public boolean addNewAircraft(){
+    public String addNewAircraft(){
 
+        String newRes = "";
         boolean newSuccess = false;
+        int checkAirline = 0;
+        Presenter presenter = new Presenter();
 
         try {
             conn.getConnection();
-            newSuccess = conn.insertAircraft(type, name, capacity, range, IdAirline);
+            checkAirline = conn.checkAirline(this.nameAirline);
+
+            if (checkAirline != 0) {
+                this.setIdAirline(checkAirline);
+
+                newSuccess = conn.insertAircraft(this.type, this.name, this.model, this.capacity, this.range, this.idAirline, this.typeAllowed);
+                if (newSuccess)
+                    return newRes = "Success";
+                else
+                    return newRes = "Fail";
+
+            } else if (checkAirline == 0)
+                return newRes = "NoAir";
+
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-
-
-        return newSuccess;
+        return newRes;
     }
 
     public void findAircraft(String name) {
@@ -72,5 +87,28 @@ public class Aircraft {
             System.out.println(e.getStackTrace());
         }
     }
+
+//    public boolean updateAircraft(){
+//
+//        Scanner sc = new Scanner(System.in);
+//        boolean success = false;
+//        try {
+//            Presenter presenter = new Presenter();
+//            presenter.airlinesMenuUpdateName(name);
+//            this.name = sc.nextLine();
+//            presenter.airlinesMenuUpdateOri(name);
+//            this.countryReg = sc.nextLine();
+//            findAirline(this.name);
+//
+//            conn.getConnection();
+//            conn.updateAirline(name,countryReg,idAirline);
+//
+//            success = true;
+//        } catch (Exception e) {
+//            System.out.println(e.toString());
+//        }
+//
+//        return success;
+//    }
 
 }
