@@ -1,7 +1,18 @@
 package helpers;
 
+import helpers.classes.ReadExcel;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Presenter {
     public Presenter() { }
@@ -41,7 +52,7 @@ public class Presenter {
         System.out.println(
                 """
                         ┌---------- What are we doing today? ----------┐
-                        | ■ Go to Flights & Airport menu           (1) |
+                        | ■ Go to Flights menu                     (1) |
                         | ■ Go to Aircraft menu                    (2) |
                         | ■ Go to Airlines menu                    (3) |
                         | ■ Import flights                         (4) |
@@ -68,37 +79,14 @@ public class Presenter {
     public void flightsMenu(){
         System.out.println(
                 """
-                ┌----------- Flights & Airport menu -----------┐
+                ┌---------------- Flights menu ----------------┐
                 | ■ Add a new flight                       (1) |
                 | ■ Update status of a flight              (2) |
-                | ■ Show all flights                       (3) |
+                | ■ Information about a flight             (3) |
                 | ■ Cancel a flight                        (4) |
                 | ■ Go back                                (5) |
                 └------ Please enter a number to continue -----┘
                 """);
-    }
-
-    public void showFlights(JSONArray results){
-
-//        Aesthetic formatting
-        String listFlights = "┌----------------- Registered Flights ------------------┐\n";
-
-        for (int i = 0; i < results.length(); i++) {
-            listFlights = listFlights.concat(
-                    "| Flight status: "+results.getJSONObject(i).getString("status") + "\n"
-                    + "| Flight origin: " + results.getJSONObject(i).getString("origin") + "\n"
-                    + "| Flight destination: " + results.getJSONObject(i).getString("destination") + "\n"
-                    + "| Departure date: " + results.getJSONObject(i).getString("dateDeparture") + "\n"
-                    + "| Departure time: " + results.getJSONObject(i).getString("timeDeparture") + "\n"
-                    + "| Arrival date: " + results.getJSONObject(i).getString("dateArrival") + "\n"
-                    + "| Arrival time: " + results.getJSONObject(i).getString("timeArrival") + "\n"
-                    + "| Name of the aircraft for the flight: " + results.getJSONObject(i).getString("nameAircraft") + "\n"
-                    + "| Airport where flight departed from: " + results.getJSONObject(i).getString("timeArrival") + "\n"
-                    + "├--------------------------------------------------------┤\n"
-            );
-        }
-        listFlights = listFlights.concat("└------------- Please press Enter to continue -----------┘\n");
-        System.out.println(listFlights);
     }
 
     public void flightsMenuAddOrigin(){
@@ -470,6 +458,8 @@ public class Presenter {
                 """, find);
     }
 
-//endregion End of Aircraft Region
+//End of Aircraft Region
+
+//Excel file
 
 }

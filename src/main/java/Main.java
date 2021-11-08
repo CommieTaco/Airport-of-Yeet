@@ -1,8 +1,6 @@
 import helpers.Presenter;
-import helpers.classes.Aircraft;
-import helpers.classes.Airline;
-import helpers.classes.Cancellation;
-import helpers.classes.Flights;
+import helpers.classes.*;
+import java.io.File;
 
 import java.util.Scanner;
 
@@ -236,11 +234,17 @@ public class Main {
 //region                Import flights from Excel option
                     case "4":
 
+                        ReadExcel obj = new ReadExcel();
+                        File f = new File("C:/Users/Dany/Documents/SOLID Project/Airport-of-Yeet/example.xlsx");
+                        if(f.exists()){
+                            obj.ReadExcel(f);
+                        }
                         break userInputSwitch;
 //endregion             Ends import flights from Excel option
 //region                Export flights to Excel option
                     case "5":
-
+                        ExportExcel obj2 = new ExportExcel();
+                        obj2.exportFile();
                         break userInputSwitch;
 //endregion             Ends export flights to Excel option
 //region                Check weather option

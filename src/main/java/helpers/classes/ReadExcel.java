@@ -6,17 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 
+import helpers.Presenter;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ReadExcel {
-    public ReadExcel(File fileName){
+
+    public void ReadExcel(File fileName){
         List cellData = new ArrayList<>();
         try{
             FileInputStream fileInputStream = new FileInputStream(fileName);
-            XSSFWorkbook  workbook = new XSSFWorkbook(fileInputStream);
+            XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
 
             XSSFSheet hssfsheet = workbook.getSheetAt(0);
             Iterator rowIterator = hssfsheet.rowIterator();
@@ -48,13 +50,6 @@ public class ReadExcel {
                 System.out.print(stringCellValue + " ");
             }
             System.out.println();
-        }
-    }
-
-    public static void main(String[] args) {
-        File f = new File("C:/Users/Dany/Documents/SOLID Project/Airport-of-Yeet/example.xlsx");
-        if(f.exists()){
-            ReadExcel obj = new ReadExcel(f);
         }
     }
 }
