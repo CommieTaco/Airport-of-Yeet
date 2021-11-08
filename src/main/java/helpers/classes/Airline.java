@@ -5,8 +5,6 @@ import helpers.connection.DBConnection;
 import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONArray;
-import org.json.JSONObject;
-import scala.math.ScalaNumericAnyConversions;
 
 import java.awt.*;
 import java.util.Scanner;
@@ -52,12 +50,12 @@ public class Airline {
         Scanner sc = new Scanner(System.in);
         boolean success = false;
         try {
+            findAirline(this.name);
             Presenter presenter = new Presenter();
             presenter.airlinesMenuUpdateName(name);
             this.name = sc.nextLine();
             presenter.airlinesMenuUpdateOri(name);
             this.countryReg = sc.nextLine();
-            findAirline(this.name);
 
             conn.getConnection();
             conn.updateAirline(name,countryReg,idAirline);

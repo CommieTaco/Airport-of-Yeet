@@ -103,18 +103,31 @@ public class Main {
                                 aircraft.setType(sc.nextLine());
                                 presenter.aircraftMenuAddName();
                                 aircraft.setName(sc.nextLine());
+                                presenter.aircraftMenuAddModel();
+                                aircraft.setModel(sc.nextLine());
                                 presenter.aircraftMenuAddCapacity();
                                 aircraft.setCapacity(sc.nextInt());
                                 presenter.aircraftMenuAddRange();
-                                aircraft.setRange(sc.nextDouble());
-                                presenter.aircraftMenuAddIdAir();
-                                aircraft.setIdAirline(sc.nextInt());
-                                boolean success = aircraft.addNewAircraft();
-
-                                if (success)
-                                    System.out.println("New aircraft created successfully");
+                                sc.nextLine();
+                                aircraft.setRange(sc.nextLine());
+                                presenter.aircraftMenuAddAirlineName();
+                                aircraft.setNameAirline(sc.nextLine());
+                                presenter.aircraftMenuAddAirlineAllowed();
+                                String allowedRes = sc.nextLine();
+                                if (allowedRes.equals("Yes") || allowedRes.equals("yes"))
+                                    aircraft.setTypeAllowed(1);
+                                else if (allowedRes.equals("No") || allowedRes.equals("no"))
+                                    aircraft.setTypeAllowed(2);
                                 else
+                                    System.out.println("Please write \"Yes\" or \"No\"");
+                                String success = aircraft.addNewAircraft();
+
+                                if (success.equals("Success"))
+                                    System.out.println("New aircraft created successfully");
+                                else if (success.equals("Fail"))
                                     System.out.println("We couldn't create the new aircraft");
+                                else if (success.equals("NoAir"))
+                                    System.out.println("The airline you're trying to associate does not exist.\n Please create the new airline or write a different name.");
                                 break;
                             //delete an aircraft
                             case "2":
@@ -125,14 +138,25 @@ public class Main {
                                 if (deleted)
                                     System.out.println("Aircraft has been deleted");
                                 else
-                                    System.out.println("There was an error whilst deleting the airline");
+                                    System.out.println("There was an error whilst deleting the aircraft");
                                 break;
                             //view all aircraft
                             case "3":
                                 aircraft.getAircraft();
                                 break;
+//                                Update aircraft
                             case "4":
-                                presenter.mainMenu();
+                                presenter.aircraftMenuUpdateSearch();
+                                aircraft.setName(sc.nextLine());
+
+                                String updated = aircraft.updateAircraft();
+                                if (updated.equals("Success"))
+                                    System.out.println("Aircraft updated successfully");
+                                else if (updated.equals("Failed"))
+                                    System.out.println("There was an error whilst updating the aircraft");
+                                else if (updated.equals("NoAir"))
+                                    System.out.println("The airline you're trying to associate does not exist.\n Please create the new airline or write a different name.");
+
                                 break;
                             default:
 
