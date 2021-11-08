@@ -31,6 +31,7 @@ public class Main {
                         String flResp;
                         presenter.flightsMenu();
                         flResp = sc.nextLine();
+                        Flights flights = new Flights();
 
 //                        Add flight
                         flightResponseSwitch: switch (flResp) {
@@ -38,31 +39,32 @@ public class Main {
                             case "1":
 
                                 presenter.flightsMenuAddOrigin();
-                                String flOrigin = sc.nextLine();
+                                flights.setOrigin(sc.nextLine());
                                 presenter.flightsMenuAddDest();
-                                String flDest = sc.nextLine();
+                                flights.setDestination(sc.nextLine());
                                 presenter.flightsMenuAddDateDep();
-                                String flDateDep = sc.nextLine();
+                                flights.setDateDepart(sc.nextLine());
                                 presenter.flightsMenuAddDateArri();
-                                String flDateArri = sc.nextLine();
+                                flights.setDateArriv(sc.nextLine());
                                 presenter.flightsMenuAddTimeDep();
-                                String flTimeDep = sc.nextLine();
+                                flights.setTimeDepart(sc.nextLine());
                                 presenter.flightsMenuAddTimeArri();
-                                String flTimeArri = sc.nextLine();
+                                flights.setTimeArriv(sc.nextLine());
                                 presenter.flightsMenuAddNameAirc();
-                                String flNameAirc = sc.nextLine();
+                                flights.setNameAircraft(sc.nextLine());
                                 presenter.flightsMenuAddNameAirpo();
-                                String flNameAirport = sc.nextLine();
+                                flights.setAirport(sc.nextLine());
 
+//                                flights.addNewFlight();
 
                                 break;
 //                        Update flight
                             case "2":
 
                                 break;
-//                        Get info about a flight
+//                        Show all flights
                             case "3":
-
+                                flights.showFlights();
                                 break;
 //                        Cancel a flight
                             case "4":
@@ -82,8 +84,6 @@ public class Main {
                                 resp = "1";
                                 return;
                         }
-
-                        Flights flights = new Flights();
                         resp = "";
                         break userInputSwitch;
 //endregion Ends flights option
