@@ -144,8 +144,19 @@ public class Main {
                             case "3":
                                 aircraft.getAircraft();
                                 break;
+//                                Update aircraft
                             case "4":
-                                presenter.mainMenu();
+                                presenter.aircraftMenuUpdateSearch();
+                                aircraft.setName(sc.nextLine());
+
+                                String updated = aircraft.updateAircraft();
+                                if (updated.equals("Success"))
+                                    System.out.println("Aircraft updated successfully");
+                                else if (updated.equals("Failed"))
+                                    System.out.println("There was an error whilst updating the aircraft");
+                                else if (updated.equals("NoAir"))
+                                    System.out.println("The airline you're trying to associate does not exist.\n Please create the new airline or write a different name.");
+
                                 break;
                             default:
 

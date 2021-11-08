@@ -159,7 +159,7 @@ public class DBConnection {
                 idAir = rs.getInt("idAircraft");
         }catch (Exception e) {
             System.out.println(e.toString());
-        } finally {rs.close(); stmt.close(); conn.close();}
+        }
 
         return idAir;
     }
@@ -182,24 +182,28 @@ public class DBConnection {
 
         try {
 //            Execute SQL query
-            rs = stmt.executeQuery("SELECT * FROM aircraft");
+            rs = stmt.executeQuery("Select ac.idAircraft as idAircraft, ac.type as acType, ac.name as name, ac.model as model, ac.capacity as capacity, ac.range as acRange, al.name as airlineName, ac.typeAllowed as typeAllowed from aircraft as ac, airline as al WHERE al.idAirline = ac.idAirline");
 
 //            Iterate result
             while (rs.next()) {
                 int idAir = rs.getInt("idAircraft");
-                String typeAir = rs.getString("type");
+                String typeAir = rs.getString("acType");
                 String nameAir = rs.getString("name");
+                String modelAir = rs.getString("model");
                 int captAir = rs.getInt("capacity");
-                int rangeAir = rs.getInt("rang");
-                int idAlAir = rs.getInt("idAirline");
+                String rangeAir = rs.getString("acRange");
+                String nameAirline = rs.getString("airlineName");
+                int typeAllowed = rs.getInt("typeAllowed");
 
                 JSONObject airObj = new JSONObject();
-                airObj.put("idAirline",idAir);
-                airObj.put("name", nameAir);
+                airObj.put("idAircraft",idAir);
                 airObj.put("type", typeAir);
+                airObj.put("name", nameAir);
+                airObj.put("model", modelAir);
                 airObj.put("capacity", captAir);
-                airObj.put("rang", rangeAir);
-                airObj.put("idAirline", idAlAir);
+                airObj.put("range", rangeAir);
+                airObj.put("nameAirline", nameAirline);
+                airObj.put("typeAllowed", typeAllowed);
 
                 airRes.put(airObj);
             }
@@ -208,6 +212,17 @@ public class DBConnection {
         } finally {rs.close(); stmt.close(); conn.close();}
 
         return airRes;
+    }
+
+    public void updateAircraft(String type, String name, String model, int capacity, String range, int idAirline, int typeAllowed, int idAircraft) throws Exception {
+
+        try {
+            String query = "UPDATE aircraft SET `type` = '"+type+"', `name` = '"+name+"', `model` = '"+model+"', `capacity` = "+capacity+", `range` = '"+range+"', `idAirline` = "+idAirline+", `typeAllowed` = "+typeAllowed+" WHERE (`idAircraft` = '"+idAircraft+"')";
+            stmt.executeUpdate(query);
+        }catch (Exception e) {
+            System.out.println(e.toString());
+        } finally {stmt.close(); conn.close();}
+
     }
 
 //endregion AIRCRAFT

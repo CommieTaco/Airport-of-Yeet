@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.json.JSONArray;
 
+import java.util.Scanner;
+
 @Getter @Setter
 public class Aircraft {
     private int idAircraft;
@@ -49,23 +51,12 @@ public class Aircraft {
         return newRes;
     }
 
-    public void findAircraft(String name) {
-
-        try {
-            conn.getConnection();
-            idAircraft = conn.findAircraft(name);
-
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-
-    }
 
     public boolean deleteAircraft(){
 
         boolean success = false;
         try {
-            findAircraft(this.name);
+            findAircraft();
             conn.getConnection();
             conn.deleteAircraft(this.idAircraft);
             success = true;
@@ -88,27 +79,64 @@ public class Aircraft {
         }
     }
 
-//    public boolean updateAircraft(){
-//
-//        Scanner sc = new Scanner(System.in);
-//        boolean success = false;
-//        try {
-//            Presenter presenter = new Presenter();
-//            presenter.airlinesMenuUpdateName(name);
-//            this.name = sc.nextLine();
-//            presenter.airlinesMenuUpdateOri(name);
-//            this.countryReg = sc.nextLine();
-//            findAirline(this.name);
-//
-//            conn.getConnection();
-//            conn.updateAirline(name,countryReg,idAirline);
-//
-//            success = true;
-//        } catch (Exception e) {
-//            System.out.println(e.toString());
-//        }
-//
-//        return success;
-//    }
+//    To find a specific aircraft
+    public void findAircraft() {
+
+        try {
+            conn.getConnection();
+            idAircraft = conn.findAircraft(this.name);
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+    }
+
+    public String updateAircraft() throws Exception {
+
+        Scanner sc = new Scanner(System.in);
+        String updRes = "Failed";
+        int checkAirline = 0;
+        try {
+            findAircraft();
+            Presenter presenter = new Presenter();
+            presenter.aircraftMenuUpdateType(this.name);
+            this.type = sc.nextLine();
+            presenter.aircraftMenuUpdateName(this.name);
+            this.name = sc.nextLine();
+            presenter.aircraftMenuUpdateModel(this.name);
+            this.model = sc.nextLine();
+            presenter.aircraftMenuUpdateCapacity(this.name);
+            this.capacity = sc.nextInt();
+            presenter.aircraftMenuUpdateRange(this.name);
+            sc.nextLine();
+            this.range = sc.nextLine();
+            presenter.aircraftMenuUpdateAirline(this.name);
+            this.nameAirline = sc.nextLine();
+            checkAirline = conn.checkAirline(this.nameAirline);
+            if (checkAirline != 0)
+                this.setIdAirline(checkAirline);
+            else if (checkAirline == 0)
+                return updRes = "NoAir";
+
+            presenter.aircraftMenuUpdateAllowed(this.name);
+            String allowedRes = sc.nextLine();
+            if (allowedRes.equals("Yes") || allowedRes.equals("yes"))
+                setTypeAllowed(1);
+            else if (allowedRes.equals("No") || allowedRes.equals("no"))
+                setTypeAllowed(2);
+            else
+                System.out.println("Please write \"Yes\" or \"No\"");
+
+
+            conn.getConnection();
+            conn.updateAircraft(this.type,this.name,this.model, this.capacity, this.range, this.idAirline, this.typeAllowed, this.idAircraft);
+            updRes = "Success";
+        } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+
+        return updRes;
+    }
 
 }

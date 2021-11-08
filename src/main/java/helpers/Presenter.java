@@ -355,14 +355,26 @@ public class Presenter {
             listAir = listAir.concat(
                     "| Aircraft name: "+results.getJSONObject(i).getString("name") + "\n"
                             + "| Type of aircraft: " + results.getJSONObject(i).getString("type") + "\n"
-                            + "| Capacity: " + results.getJSONObject(i).getInt("capacity") + "\n"
-                            + "| Range: " + results.getJSONObject(i).getInt("rang") + "\n"
-                            + "| Airline: " + results.getJSONObject(i).getInt("idAirline") + "\n"
+                            + "| Model of aircraft: " + results.getJSONObject(i).getString("model") + "\n"
+                            + "| Capacity: " + results.getJSONObject(i).getInt("capacity") + " passengers\n"
+                            + "| Range: " + results.getJSONObject(i).getString("range") + " Km.\n"
+                            + "| Airline: " + results.getJSONObject(i).getString("nameAirline") + "\n"
+                            + "| Allowed at the airport: " + (1 == results.getJSONObject(i).getInt("typeAllowed") ? "Yes" : "No") + "\n"
                             + "├--------------------------------------------------------┤\n"
             );
         }
         listAir = listAir.concat("└------------- Please press Enter to continue -----------┘\n");
         System.out.println(listAir);
+    }
+
+//    Search for aircraft's name
+    public void aircraftMenuUpdateSearch(){
+        System.out.println(
+                """
+                ┌-------------- Update an aircraft ------------┐
+                | ■ Enter the name of the aircraft to update   |
+                └--- Write data and press Enter to continue ---┘
+                """);
     }
 
     public void aircraftMenuUpdateType(String find){
@@ -371,6 +383,66 @@ public class Presenter {
                 ┌-------------- Update an airline -------------┐
                 | ► %s                                         |
                 | ■ Enter aircraft's new type                  |
+                └--- Write data and press Enter to continue ---┘
+                """, find);
+    }
+
+    public void aircraftMenuUpdateName(String find){
+        System.out.printf(
+                """
+                ┌-------------- Update an airline -------------┐
+                | ► %s                                         |
+                | ■ Enter aircraft's new name                  |
+                └--- Write data and press Enter to continue ---┘
+                """, find);
+    }
+
+    public void aircraftMenuUpdateModel(String find){
+        System.out.printf(
+                """
+                ┌-------------- Update an airline -------------┐
+                | ► %s                                         |
+                | ■ Enter aircraft's new model                 |
+                └--- Write data and press Enter to continue ---┘
+                """, find);
+    }
+
+    public void aircraftMenuUpdateCapacity(String find){
+        System.out.printf(
+                """
+                ┌-------------- Update an airline -------------┐
+                | ► %s                                         |
+                | ■ Enter aircraft's new capacity              |
+                └--- Write data and press Enter to continue ---┘
+                """, find);
+    }
+
+    public void aircraftMenuUpdateRange(String find){
+        System.out.printf(
+                """
+                ┌-------------- Update an airline -------------┐
+                | ► %s                                         |
+                | ■ Enter aircraft's new range                 |
+                └--- Write data and press Enter to continue ---┘
+                """, find);
+    }
+
+    public void aircraftMenuUpdateAirline(String find){
+        System.out.printf(
+                """
+                ┌-------------- Update an airline -------------┐
+                | ► %s                                         |
+                | ■ Enter aircraft's new parent airline        |
+                └--- Write data and press Enter to continue ---┘
+                """, find);
+    }
+
+    public void aircraftMenuUpdateAllowed(String find){
+        System.out.printf(
+                """
+                ┌-------------- Update an airline -------------┐
+                | ► %s                                         |
+                | ■ Is the aircraft allowed at the airport?    |
                 └--- Write data and press Enter to continue ---┘
                 """, find);
     }

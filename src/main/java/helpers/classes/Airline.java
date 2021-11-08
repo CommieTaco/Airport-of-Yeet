@@ -50,12 +50,12 @@ public class Airline {
         Scanner sc = new Scanner(System.in);
         boolean success = false;
         try {
+            findAirline(this.name);
             Presenter presenter = new Presenter();
             presenter.airlinesMenuUpdateName(name);
             this.name = sc.nextLine();
             presenter.airlinesMenuUpdateOri(name);
             this.countryReg = sc.nextLine();
-            findAirline(this.name);
 
             conn.getConnection();
             conn.updateAirline(name,countryReg,idAirline);
