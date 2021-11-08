@@ -11,8 +11,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-public class ExcelFile {
-    public static void main(String[] args) {
+public class ExportExcel {
+    public static void exportFile(){
         //Class constructor
         Flights flight = new Flights();
         //Creates a new workbook in blank
@@ -23,7 +23,7 @@ public class ExcelFile {
         Integer num = 2;
         //For each line it creates an array of objects (Object[])
         Map<String, Object[]> data = new TreeMap<String, Object[]>();
-        data.put("1", new Object[]{"Identificador", "Nombre", "Apellidos"});
+        data.put("1", new Object[]{"Flight Number", "Airline", "Aircraft Type", "Origin", "Destination", "Departure Date and Time", "Arrival Date and Time"});
         data.put("2", new Object[]{1, "Nombre", "Apellidos"});
         data.put("3", new Object[]{2, "Nombre", "Apellidos"});
         data.put("4", new Object[]{3, "Nombre", "Apellidos"});
