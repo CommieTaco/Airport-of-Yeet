@@ -1,6 +1,5 @@
 package helpers.classes;
 
-import helpers.connection.DBConnection;
 import lombok.Getter;
 import lombok.Setter;
 

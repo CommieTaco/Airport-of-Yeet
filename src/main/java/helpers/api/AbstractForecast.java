@@ -1,8 +1,8 @@
 package helpers.api;
 
-import java.io.Serializable;
-
 import org.json.JSONObject;
+
+import java.io.Serializable;
 
 public abstract class AbstractForecast extends AbstractResponse {
 	/*
