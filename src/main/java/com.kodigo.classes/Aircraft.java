@@ -1,4 +1,4 @@
-package helpers.classes;
+package com.kodigo.classes;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,4 +15,3 @@ public class Aircraft {
     private int typeallowed;
 
 }
-
